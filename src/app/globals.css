@@ -2,32 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #eee;
+  color:#212529;
+  /* font-weight: 400; */
+  font-family: "Poly", serif;
+}
+small{
+  color:#4e4e4e;
+  font-size: 0.6rem;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+th, td{
+  padding:6px;
+  color:#333;
+  text-align: center;
+  font-weight: 400;
+}
+td{
+  border-left: 1px solid #eae0ca;
+  border-top: 1px solid #eae0ca;
+}
+td:first-child{
+  border-left: 0;
+}
+tr:first-child{
+  border-left: 0;
+}
+th{
+  background-image:-webkit-linear-gradient(top,#fff,#e2d9c7);
+  color:#000;
+  font-weight: bold;
+}
+tr:nth-child(even) td{
+  background-color: #f9f9f9;
+}
+
+h2{
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+p{
+  margin: 1rem 0;
 }
