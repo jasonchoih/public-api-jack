@@ -34,7 +34,13 @@ export default () =>
         // [ 'Content' ],
         // [ 'Image', v => <CldImage width="0" height="0" src={'public_api/'+v[2]+'.png'} sizes="100vw" alt={v[2]} className='h-auto w-8 m-auto' /> ] , 
         [ 'Image', v => <CldImage width="0" height="0" src={`https://res.cloudinary.com/ddv2aeipa/image/upload/v1719214653/${v[2]}`} sizes="100vw" alt={v[2]} className='h-auto w-16 m-auto' /> ] ,
-        [ 'Delete' , v=> <FontAwesomeIcon icon={faTrashCan} color='#E32636'  className='cursor-pointer' onClick={()=>SEND('blog/del', {id:v[0], title:v[1] })} />],
+        [ 'Delete' , v=> <FontAwesomeIcon icon={faTrashCan} color='#E32636'  className='cursor-pointer' onClick={()=>{
+            SEND('blog/del', {blog_id:v[0], title:v[1] })
+            // console.log({
+            //     id:v[0],
+            //     title:v[1]
+            // })
+        }} />],
         [ 'Edit' , v=> <FontAwesomeIcon icon={faPenToSquare} className='cursor-pointer' onClick={()=>dispatch.models.SET({M:{c:<EditBlog data={v} /> }})} />]
     ];
     // 
