@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 // 
 export default () =>
 {
-    const { showSubContent, relatedAPI, reladtedBlog } = useSelector((state) => state.models);
+    const { showSubContent, relatedAPI, reladtedBlog, meta } = useSelector((state) => state.models);
     const { api_favourties } = useSelector((state) => state.apis);
     const dispatch = useDispatch();
     const router = useRouter()
@@ -18,6 +18,10 @@ export default () =>
     useEffect(()=>{
         if(!showSubContent) return;
         SEND('api/related', {api_id: id, tag, title})
+        dispatch.models.SET({
+            meta: title + ' - API - ' + price + ' ' + description 
+            // [Tool Name] API - Pricing, Info & Related APIs
+        })
     },[showSubContent])
     // 
     if(!showSubContent) return <></>
@@ -57,6 +61,7 @@ export default () =>
     }
     // 
     return <div className='px-2'>
+    <title>{meta}</title>
         <div className='grid grid-cols-1 xl:grid-cols-12 gap-5'>
             <div className='hidden xl:block xl:col-span-1'>
                 {/* <img src={'/static/images/api/'+img+'.png'} /> */}

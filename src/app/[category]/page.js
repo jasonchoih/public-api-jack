@@ -9,5 +9,7 @@ export async function generateStaticParams()
 // 
 export default () =>
 {
-    return <Page />
+  return <>
+    <Page />
+  </>
 }

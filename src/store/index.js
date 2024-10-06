@@ -39,7 +39,7 @@ const SEND = async(path, _data) =>
 }
 // 
 store.subscribe(() => {
-  // console.log(store.getState());
+  console.log(store.getState());
 });
 // 
 export {

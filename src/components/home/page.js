@@ -1,9 +1,9 @@
 'use client'
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { use, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import dynamic from 'next/dynamic';
 import { Pagination } from '@mui/material';
-import { SEND } from '@/store'
+import { SEND } from '@/store';
 //  
 const Loader = dynamic(() => import('@/components/loading'), {ssr:false})
 const Content = dynamic(() => import('@/components/home/content'), {ssr:false, loading:()=><Loader />})
@@ -12,18 +12,25 @@ const Blog = dynamic(() => import('@/components/home/blog'), {ssr:false, loading
 // 
 export default () =>
 {
-    const { onCategory, apiListFeatured, apiListRecent, showSubContent } = useSelector((state) => state.models);
+    const { onCategory, apiListFeatured, apiListRecent, showSubContent, meta } = useSelector((state) => state.models);
+    const dispatch = useDispatch()
     // 
     useEffect(()=>{
-        if(onCategory=='home') {
-            SEND('home/index')
-            return;
+        try {
+            if(onCategory=='home') {
+                SEND('home/index')
+                dispatch.models.SET({meta:'Public APIs — A Directory of Free Public &amp; Open Rest APIs'})
+                return;
+            }
+            SEND('home/list', {category: onCategory})
+        } catch (error) {
+            
         }
-        SEND('home/list', {category: onCategory})
     },[onCategory])
     // 
     return <div className='xl:w-[1400px] m-auto py-5'>
         <div className='grid grid-cols-1 xl:grid-cols-[70%_30%] gap-16'>
+        <title>{meta}</title>
             <div>
                 <Content 
                     header='Featured API' 
