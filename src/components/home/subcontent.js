@@ -19,7 +19,7 @@ export default () =>
         if(!showSubContent) return;
         SEND('api/related', {api_id: id, tag, title})
         dispatch.models.SET({
-            meta: title + ' - API - ' + price + ' ' + description 
+            meta: title + ' - API - ' +  ' $' + price + ' ' + description 
             // [Tool Name] API - Pricing, Info & Related APIs
         })
     },[showSubContent])
